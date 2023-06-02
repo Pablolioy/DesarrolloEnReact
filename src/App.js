@@ -14,6 +14,7 @@ import Navegador from './componentes/Navegador'
 
 //Pages
 import Home from './Pages/Home';
+import PeliculaDetalle from './Pages/PeliculaDetalle';
 
 //Bootstrap
 import { Container } from 'react-bootstrap';
@@ -33,6 +34,7 @@ function App() {
         <Container style={ styles.container }>
           <Routes>
             <Route path='/' element={<Home />}></Route>
+            <Route path='/pelicula/:id' element={<PeliculaDetalle/>}></Route>
           </Routes>
         </Container>
       </Router>
