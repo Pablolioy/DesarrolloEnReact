@@ -25,7 +25,6 @@ function Home() {
         const request = async () => {
             try {
                 const response = await getPeliculas(query)
-                console.log(response)
                 setData(response.Search)
             } catch (e) {
                 console.log(e)

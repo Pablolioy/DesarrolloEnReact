@@ -18,8 +18,8 @@ function Buscador({ handleSubmit, handleInputChange, texto }) {
                     value={texto}
                 >
                     <Form.Control
-                        placeholder="Ingrese palabra clave"
-                        aria-label="Ingrese palabra clave"
+                        placeholder="Ingrese pelicula, serie o juego"
+                        aria-label="Ingrese pelicula, serie o juego"
                         aria-describedby="basic-addon2"
                     />
                     <Button variant="outline-secondary" id="button-addon2" type='submit'>

@@ -15,6 +15,8 @@ import Navegador from './componentes/Navegador'
 //Pages
 import Home from './Pages/Home';
 import PeliculaDetalle from './Pages/PeliculaDetalle';
+import Registro from './Pages/Registro';
+import Login from './Pages/Login';
 
 //Bootstrap
 import { Container } from 'react-bootstrap';
@@ -29,12 +31,14 @@ const styles = {
 function App() {
   return (
     <div className="App">
-      <Navegador/>
       <Router>
-        <Container style={ styles.container }>
+        <Navegador />
+        <Container style={styles.container}>
           <Routes>
             <Route path='/' element={<Home />}></Route>
-            <Route path='/pelicula/:id' element={<PeliculaDetalle/>}></Route>
+            <Route path='/registro' element={<Registro />}></Route>
+            <Route path='/login' element={<Login />}></Route>
+            <Route path='/pelicula/:id' element={<PeliculaDetalle />}></Route>
           </Routes>
         </Container>
       </Router>
