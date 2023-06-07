@@ -27,7 +27,7 @@ function Login() {
 
     return (
         <div>
-            <Form onSubmit={handleSubmit(onSubmit)}>
+            <Form onSubmit={handleSubmit(onSubmit)} style={{ width: "50%",display: "block", marginInline: "auto", color: "white"}}>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label>Email</Form.Label>
                     <Form.Control

@@ -8,6 +8,27 @@ function PeliculaDetalle() {
     const [data, setData] = useState({})
     const [loading, setLoading] = useState(false)
 
+    const styles = {
+        profile: {
+            alingText: "center",
+            width: "80%",
+            flexWrap: "wrap",
+            display: "flex",
+            color: "white",
+            marginInline: "auto"
+        },
+        info: {
+            width: "80%",
+        },
+        description: {
+            flexWrap: "wrap"
+        },
+        ul: {
+            listStyle: "none",
+        }
+
+    }
+
 
     useEffect(() => {
         const carga = async () => {
@@ -15,8 +36,7 @@ function PeliculaDetalle() {
                 .then((info) => {
                     setLoading(true)
                     setData(info)
-                    console.log(info)
-                }
+                    }
                 )
         }
         carga()
@@ -25,22 +45,20 @@ function PeliculaDetalle() {
     if (loading) {
         return (
             <>
-                <h1>
-                    {data.Title}
-                </h1>
-                <div>
-                    <img src={data.Poster} />
-                    <ul>
-                        <li>Tipo: {data.Type}</li>
-                        {data.Type === "series" && <li>Temporadas: {data.totalSeasons}</li>}
-                        <li>Genero: {data.Genre}</li>
-                        <li>Lenguaje: {data.Language}</li>
-                        <li>Reparto: {data.Actors}</li>
-                    </ul>
-                </div>
-                    <div>
-                        {data.Plot}
+                <div className="profile" style={styles.profile}>
+                    <img src={data.Poster} alt={params.id}/>
+                    <div className="info" style={styles.info}>
+                        <h1 style={{marginBottom: "5%"}}>{data.Title}</h1>
+                        <ul style={styles.ul}>
+                            <li>Tipo: {data.Type}</li>
+                            {data.Type === "series" && <li>Temporadas: {data.totalSeasons}</li>}
+                            <li>Genero: {data.Genre}</li>
+                            <li>Lenguaje: {data.Language}</li>
+                            <li>Reparto: {data.Actors}</li>
+                        </ul>
+                        <div className="description" style={styles.description}>{data.Plot}</div>
                     </div>
+                </div>
             </>
         )
     } else {

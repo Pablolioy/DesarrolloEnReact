@@ -1,14 +1,17 @@
-import {Button, Card,Col } from 'react-bootstrap';
+import { Card,Col } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
 function Pelicula({ info }) {
+const style = {
+    width: '244px'  
+}
+
     return (
         <Col key={info.id}>
-            <Card style={{ width: '18rem' }}>
-                <Card.Img variant="top" src={info.Poster} />
+            <Card as={Link} to={`/pelicula/${info.imdbID}`} style={{ style }}>
+                <Card.Img style={{ style }} variant="top" src={info.Poster} />
                 <Card.Body>
-                    <Card.Title>{info.Title}</Card.Title>
-                    <Button as={Link} to={`/pelicula/${info.imdbID}`} variant="primary">Ver Detalle</Button>
+                    <Card.Title as={Link} to={`/pelicula/${info.imdbID}`}>{info.Title}</Card.Title>
                 </Card.Body>
             </Card>
         </Col>

@@ -8,6 +8,7 @@ function Registro() {
 
     const [registrado, setRegistrado] = useState(false)
 
+
     const {
         register,
         handleSubmit,
@@ -26,8 +27,8 @@ function Registro() {
 
     return (
         <div>
-            <Form onSubmit={handleSubmit(onSubmit)}>
-                <Form.Group className="mb-3" controlId="formBasicNombre">
+            <Form onSubmit={handleSubmit(onSubmit)} style={{ width: "50%",display: "block", marginInline: "auto",color: "white"}}>
+                <Form.Group  className="mb-3" controlId="formBasicNombre">
                     <Form.Label>Nombre</Form.Label>
                     <Form.Control
                         type="text"

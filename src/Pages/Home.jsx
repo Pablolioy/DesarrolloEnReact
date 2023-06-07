@@ -1,6 +1,10 @@
 //Hooks
-import { useState } from "react"
+import { useEffect, useState } from "react"
+import { useParams } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 
+// CSS
+import './Home.css'
 
 //React Bootstrap
 import { Row } from "react-bootstrap"
@@ -13,26 +17,38 @@ import Resultados from "../componentes/Resultados"
 import { getPeliculas } from '../services/peliService'
 
 function Home() {
+    const params = useParams()
     const [query, setQuery] = useState("")
     const [data, setData] = useState("")
+    const navigate = useNavigate()
 
     const handleInputChange = ({ target }) => {
         setQuery(target.value)
     }
 
+    //Al hacer submit se redirige la pagina
     const handleSubmit = (e) => {
         e.preventDefault()
+        if (query === "") return
+        navigate(`/buscar/${query}`)
+    }
+    
+    //Cuando cambia params.id se ejecuta getPeliculas
+    useEffect(()=>{
         const request = async () => {
-            try {
-                const response = await getPeliculas(query)
-                setData(response.Search)
-            } catch (e) {
-                console.log(e)
+            if (params.id) {
+                try {
+                    const response = await getPeliculas(params.id)
+                    setData(response.Search)
+                } catch (e) {
+                    console.log(e)
+                }
+            }else{
+                setData("")
             }
         }
         request()
-    }
-
+    },[params.id])
 
     return (
         <>
@@ -41,7 +57,7 @@ function Home() {
                 handleSubmit={handleSubmit}
                 texto={query}
             />
-            <Row>
+            <Row >
                 <Resultados
                     data={data}
                 />

@@ -9,5 +9,23 @@ body {
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+  monospace;
+}
+
+
+html {
+  background-color: #080f28;
+}
+
+
+a{
+  color: white
+}
+a:visited {
+  color: white;
+  text-decoration: none;
+}
+
+.app nav a{
+  background-color: #141a32;
 }

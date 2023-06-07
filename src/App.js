@@ -33,9 +33,10 @@ function App() {
     <div className="App">
       <Router>
         <Navegador />
-        <Container style={styles.container}>
+        <Container fluid style={styles.container}>
           <Routes>
-            <Route path='/' element={<Home />}></Route>
+            <Route path='/' element={<Home/>}></Route>
+            <Route path='/buscar/:id' element={<Home/>}></Route>
             <Route path='/registro' element={<Registro />}></Route>
             <Route path='/login' element={<Login />}></Route>
             <Route path='/pelicula/:id' element={<PeliculaDetalle />}></Route>

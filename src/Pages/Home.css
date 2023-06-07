@@ -1,0 +1,34 @@
+.row {
+    flex-wrap: wrap;
+    align-content: flex-start;
+}
+
+.row .col {
+    padding-left: .5rem;
+    padding-right: .5rem;
+    margin-bottom: 2rem;
+    flex: 0
+}
+
+.card{
+    width: 178px;
+    height: 100%;
+    background-color: transparent;
+}
+
+img {
+    vertical-align: middle;
+    background-color: #080f28;
+    border-radius: 5px;
+    margin-bottom: 0;
+    height: 267px;
+    max-width: 178px;
+}
+
+.h5{
+    font-size: 0.90rem;
+}
+
+.bg-light{
+    background-color: #080f28;
+}
