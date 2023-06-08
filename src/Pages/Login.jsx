@@ -2,12 +2,14 @@ import { useForm } from "react-hook-form";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { login } from "../services/usuarioService";
-import { useState } from "react";
+
+import { useNavigate } from "react-router-dom";
 
 
-function Login() {
+function Login({ setLogin, setUser }) {
 
-    const [isLogin,setIsLogin] = useState(false)
+
+    const navigate = useNavigate({});
 
     const {
         register,
@@ -17,9 +19,10 @@ function Login() {
 
     const onSubmit = async (data) => {
         try {
-            setIsLogin(false)
-            await login(data.email, data.password)
-            .then(()=>setIsLogin(true));
+            const user = await login(data.email, data.password)
+            setLogin(true)
+            setUser(user)
+            navigate("/");
         } catch (e) {
             console.log(e);
         }
@@ -27,7 +30,7 @@ function Login() {
 
     return (
         <div>
-            <Form onSubmit={handleSubmit(onSubmit)} style={{ width: "50%",display: "block", marginInline: "auto", color: "white"}}>
+            <Form onSubmit={handleSubmit(onSubmit)} style={{ width: "50%", display: "block", marginInline: "auto", color: "white" }}>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label>Email</Form.Label>
                     <Form.Control
@@ -84,7 +87,6 @@ function Login() {
                     Ingresar
                 </Button>
             </Form>
-            {isLogin && <div>Logueado correctamente</div>}
         </div>
     );
 }

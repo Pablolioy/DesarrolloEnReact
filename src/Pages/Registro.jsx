@@ -3,10 +3,11 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { create } from "../services/usuarioService";
 import { useState } from "react";
+import AlertCustom from "../componentes/AlertCustom"
+import { registroMessage } from "../Utils/errorMessage";
 
 function Registro() {
-
-    const [registrado, setRegistrado] = useState(false)
+    const [alert, setAlert] = useState({ variant: "", text: "" });
 
 
     const {
@@ -17,18 +18,26 @@ function Registro() {
 
     const onSubmit = async (data) => {
         try {
-            setRegistrado(false)
-            const user = await create(data).then(()=>setRegistrado(true));
-            console.log(user)
+            await create(data);
+            setAlert({
+                variant: "success",
+                text: "Gracias por registrarte",
+                duration: 3000,
+                link: "/login",
+            });
         } catch (e) {
             console.log(e);
+            setAlert({
+                variant: "danger",
+                text: registroMessage[e.code] || "Ha ocurrido error",
+            });
         }
     };
 
     return (
         <div>
-            <Form onSubmit={handleSubmit(onSubmit)} style={{ width: "50%",display: "block", marginInline: "auto",color: "white"}}>
-                <Form.Group  className="mb-3" controlId="formBasicNombre">
+            <Form onSubmit={handleSubmit(onSubmit)} style={{ width: "50%", display: "block", marginInline: "auto", color: "white" }}>
+                <Form.Group className="mb-3" controlId="formBasicNombre">
                     <Form.Label>Nombre</Form.Label>
                     <Form.Control
                         type="text"
@@ -105,8 +114,10 @@ function Registro() {
                 <Button variant="primary" type="submit">
                     Registrarse
                 </Button>
+                <AlertCustom
+                    {...alert}
+                />
             </Form>
-            {registrado && <div>Registrado correctamente</div>}
         </div>
     );
 }

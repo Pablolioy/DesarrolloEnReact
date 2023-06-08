@@ -12,7 +12,12 @@ export async function create(payload) {
 }
 
 export async function login(email, password) {
-    const responseUser = await firebase.auth().signInWithEmailAndPassword(email, password)
-    return (responseUser.user.providerId)
+    const responseUser = await firebase.auth().signInWithEmailAndPassword(email, password);
+    if (responseUser.user.uid) {
+        const userDocument = await firebase.firestore().collection('usuarios_tp_final').where('userId', '==', responseUser.user.uid).get();
+        console.log(userDocument.docs[0].data())
+        return userDocument.docs[0].data();
+    }
+    return {};
 }
 
